@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Post;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -17,26 +19,37 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
-    return view('posts',['posts'=>Post::all()]);
+//    \Illuminate\Support\Facades\DB::listen(function ($query){
+//       logger($query->sql,$query->bindings);
+//    });
+
+
+    return view('posts',['posts'=>Post::latest('published_at')->with('category','author')->get()
+    ]);
 });
 
 
-Route::get('posts/{post}', function ($slug) {
-
-    $post = Post::findOrFail($slug);
+Route::get('posts/{post:slug}', function (Post $post) {
     return view('post',[
         'post' => $post,
     ]);
 
 });
 
+Route::get('categories/{category:slug}', function (Category $category) {
+    return view('posts',[
+        'posts' => $category->posts,
+    ]);
 
-Route::get('posts', function () {
-    return view('posts',['posts'=>Post::all()]);
+});
+
+Route::get('authors/{author:username}', function (User $author) {
+    return view('posts',[
+        'posts' => $author->posts,
+    ]);
+
 });
 
 
-Route::get('post', function () {
-    return view('post');
-});
+
 
