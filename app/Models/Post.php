@@ -11,7 +11,7 @@ class Post extends Model
 
 //    protected  $guarded = ['id'];
     protected $fillable = ['title','slug','excerpt','body','category_id'];
-    protected  $with = ['category','author'];
+    protected  $with = ['category','author','comments'];
     public  function category()
     {
         return $this->belongsTo(Category::class);
@@ -20,6 +20,11 @@ class Post extends Model
     public function author() // user_id {function name _ id} foreign key
     {
         return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function comments() // user_id {function name _ id} foreign key
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function scopeFilter($query,array $filters){
