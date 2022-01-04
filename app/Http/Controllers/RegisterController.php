@@ -22,7 +22,9 @@ class RegisterController extends Controller
         ]);
 
         User::create($attributes);
-        return redirect('/');
+
+        //lgo the user in
+        return redirect('/')->with('success','Your account has been created');
     }
 
 }
