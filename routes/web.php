@@ -26,7 +26,12 @@ Route::get('/', [PostController::class,'index'])->name('home');
 Route::get('posts/{post:slug}', [PostController::class,'show']);
 Route::get('register', [RegisterController::class,'create'])->middleware('guest');
 Route::post('register', [RegisterController::class,'store'])->middleware('guest');
-Route::post('logout', [SessionController::class,'destroy']);
+
+Route::get('login', [SessionController::class,'create'])->middleware('guest'); //if not logged in
+Route::post('login', [SessionController::class,'store'])->middleware('guest'); //if not logged in
+
+Route::post('logout', [SessionController::class,'destroy'])->middleware('auth'); //if logged in
+
 
 //Route::get('categories/{category:slug}', function (Category $category) {
 //    return view('posts',[
