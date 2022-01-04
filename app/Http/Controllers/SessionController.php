@@ -8,7 +8,6 @@ class SessionController extends Controller
 {
     public  function  destroy()
     {
-//        dd(auth());
         auth()->logout();
 
 //        $username = auth()->user()->name;
