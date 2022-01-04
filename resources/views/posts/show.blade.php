@@ -49,6 +49,7 @@
                 </div>
             </article>
         </main>
+    </section>
 </x-layout>
 
 
