@@ -8,7 +8,7 @@
                     <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="name">
                         Name
                     </label>
-                    <input class="border border-gray-400 p-2 w-full"
+                    <input class="border border-gray-400 p-2 w-full rounded-xl"
                            type="text"
                            name="name"
                            id="name"
@@ -25,7 +25,7 @@
                     <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="username">
                         Username
                     </label>
-                    <input class="border border-gray-400 p-2 w-full"
+                    <input class="border border-gray-400 p-2 w-full rounded-xl"
                        type="text"
                        name="username"
                        id="username"
@@ -41,7 +41,7 @@
                     <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="email">
                         Email
                     </label>
-                    <input class="border border-gray-400 p-2 w-full"
+                    <input class="border border-gray-400 p-2 w-full rounded-xl"
                            type="email"
                            name="email"
                            id="email"
@@ -58,7 +58,7 @@
                     <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="password">
                         Password
                     </label>
-                    <input class="border border-gray-400 p-2 w-full"
+                    <input class="border border-gray-400 p-2 w-full rounded-xl"
                            type="password"
                            name="password"
                            id="password"

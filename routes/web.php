@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Models\Post;
@@ -27,11 +28,12 @@ Route::get('posts/{post:slug}', [PostController::class,'show']);
 Route::get('register', [RegisterController::class,'create'])->middleware('guest');
 Route::post('register', [RegisterController::class,'store'])->middleware('guest');
 
-Route::get('login', [SessionController::class,'create'])->middleware('guest'); //if not logged in
+Route::get('login', [SessionController::class,'create'])->middleware('guest')->name('login'); //if not logged in
 Route::post('login', [SessionController::class,'store'])->middleware('guest'); //if not logged in
 
 Route::post('logout', [SessionController::class,'destroy'])->middleware('auth'); //if logged in
 
+Route::post('posts/{post:slug}/comments',[PostCommentsController::class,'store']);
 
 //Route::get('categories/{category:slug}', function (Category $category) {
 //    return view('posts',[
