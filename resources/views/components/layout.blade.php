@@ -27,11 +27,27 @@
              <a href="/register" class="text-xs font-bold uppercase">Register</a>
              <a href="/login" class="ml-3 text-xs font-bold uppercase">Login</a>
             @else
-                <a class="text-xs font-bold uppercase">Welcome , {{ auth()->user()->name }}</a>
-                <form method="POST" action="/logout" class="text-xs font-semibold text-blue-500 ml-6">
-                    @csrf
-                    <button type="submit">Log Out</button>
-                </form>
+                <x-dropdown>
+                    <x-slot name="trigger">
+                        <a class="text-xs font-bold uppercase">Welcome , {{ auth()->user()->name }}</a>
+                    </x-slot>
+
+                    <x-dropdown-item href="/admin/posts/create">Dashboard</x-dropdown-item>
+                    <x-dropdown-item href="/admin/posts/create">
+                        New Post
+                    </x-dropdown-item>
+                    <x-dropdown-item href="#"
+                                     x-data="{}"
+                                     @click.prevent="document.querySelector('#logout-form').submit()"
+                    >
+                        Log out
+                    </x-dropdown-item>
+                    <form method="POST" id="logout-form" action="/logout" class="text-xs font-semibold text-blue-500 ml-6 hidden">
+                        @csrf
+                    </form>
+                </x-dropdown>
+
+
             @endunless
 
             <a href="#newsletter" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
