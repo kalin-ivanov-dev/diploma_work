@@ -42,9 +42,14 @@ Route::post('posts/{post:slug}/comments',[PostCommentsController::class,'store']
 //MAILCHIMP ROUTE
 Route::post('newsletter',NewsletterController::class);
 
-Route::get('admin/posts/create',[PostController::class,'create'])->middleware('admin');
-Route::get('admin/posts/create',[AdminPostController::class,'create'])->middleware('admin');
-Route::post('admin/posts',[PostController::class,'store'])->middleware('admin');
+//Admin Post Routes
+Route::get('admin/posts/create',[AdminPostController::class,'create'])->middleware('admin'); //Get create page for posts
+Route::post('admin/posts',[AdminPostController::class,'store'])->middleware('admin'); // Create  a post
+Route::get('admin/posts/',[AdminPostController::class,'index'])->middleware('admin'); // Show all posts
+Route::get('admin/posts/{post}/edit',[AdminPostController::class,'edit'])->middleware('admin'); // Edit a post
+Route::patch('admin/posts/{post}',[AdminPostController::class,'update'])->middleware('admin'); // Edit a post
+Route::delete('admin/posts/{post}',[AdminPostController::class,'destroy'])->middleware('admin'); // Edit a post
+
 
 
 

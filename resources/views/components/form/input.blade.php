@@ -5,9 +5,9 @@
     <input class="border border-gray-400 p-2 w-full rounded-md"
            name="{{$name}}"
            id="{{$name}}"
-           value="{{ old($name) }}"
-           required
-           {{$attributes}}
+{{--           value="{{ old($name) }}"--}}
+{{--           required--}}
+           {{ $attributes(['value' => old($name)]) }}
     >
 
     <x-form.error name="{{$name}}"/>

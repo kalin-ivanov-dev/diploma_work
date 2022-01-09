@@ -26,5 +26,5 @@
             <x-buttons.submit-button>Publish</x-buttons.submit-button>
         </form>
     </x-setting>
-   </section>
+    </section>
 </x-layout>

@@ -32,10 +32,13 @@
                         <a class="text-xs font-bold uppercase">Welcome , {{ auth()->user()->name }}</a>
                     </x-slot>
 
-                    <x-dropdown-item href="/admin/posts/create">Dashboard</x-dropdown-item>
-                    <x-dropdown-item href="/admin/posts/create">
-                        New Post
-                    </x-dropdown-item>
+                    @can('admin'))
+                        <x-dropdown-item href="/admin/posts/">All Posts</x-dropdown-item>
+                        <x-dropdown-item href="/admin/posts/create">
+                            New Post
+                        </x-dropdown-item>
+                    @endcan
+
                     <x-dropdown-item href="#"
                                      x-data="{}"
                                      @click.prevent="document.querySelector('#logout-form').submit()"
