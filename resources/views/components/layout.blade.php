@@ -1,8 +1,9 @@
 <!doctype html>
 
 <title>Laravel From Scratch Blog</title>
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+{{--<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
 <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <script defer src="https://unpkg.com/alpinejs@3.7.1/dist/cdn.min.js"></script>
 
@@ -32,12 +33,12 @@
                         <a class="text-xs font-bold uppercase">Welcome , {{ auth()->user()->name }}</a>
                     </x-slot>
 
-                    @can('admin'))
+{{--                    @can('admin')--}}
                         <x-dropdown-item href="/admin/posts/">All Posts</x-dropdown-item>
                         <x-dropdown-item href="/admin/posts/create">
                             New Post
                         </x-dropdown-item>
-                    @endcan
+{{--                    @endcan--}}
 
                     <x-dropdown-item href="#"
                                      x-data="{}"

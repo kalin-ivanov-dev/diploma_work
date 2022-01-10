@@ -10,9 +10,16 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@tailwindcss/ui": "^0.3",
+        "autoprefixer": "^10.4.2",
         "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
+        "laravel-mix": "^6.0.39",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
-    }
+        "postcss": "^8.4.5",
+        "postcss-import": "^14.0.2",
+        "postcss-nested": "^5.0.6",
+        "tailwindcss": "^3.0.12",
+        "vue-template-compiler": "^2.6.11"
+    },
+    "dependencies": []
 }

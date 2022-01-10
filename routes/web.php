@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
@@ -24,6 +25,9 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/welcome',function (){
+   return view('welcome') ;
+});
 
 Route::get('/', [PostController::class,'index'])->name('home');
 
@@ -31,13 +35,7 @@ Route::get('posts/{post:slug}', [PostController::class,'show']);
 Route::get('register', [RegisterController::class,'create'])->middleware('guest');
 Route::post('register', [RegisterController::class,'store'])->middleware('guest');
 
-Route::get('login', [SessionController::class,'create'])->middleware('guest')->name('login'); //if not logged in
-Route::post('login', [SessionController::class,'store'])->middleware('guest'); //if not logged in
-
-Route::post('logout', [SessionController::class,'destroy'])->middleware('auth'); //if logged in
-
 Route::post('posts/{post:slug}/comments',[PostCommentsController::class,'store']);
-
 
 //MAILCHIMP ROUTE
 Route::post('newsletter',NewsletterController::class);
@@ -72,5 +70,5 @@ Route::delete('admin/posts/{post}',[AdminPostController::class,'destroy'])->midd
 //});
 
 
-
-
+Auth::routes();
+Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
