@@ -61,5 +61,6 @@
             </div>
         </div>
     </x-setting>
+    {{$posts->links()}}
     </section>
 </x-layout>

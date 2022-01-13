@@ -35,6 +35,24 @@
                 <x-form.error name="categry"/>
             </x-form.field>
 
+            <input id="longitude"
+                   type="hidden"
+                   name="longitude"
+                   placeholder="longitude of map"
+                   class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none"
+                   value="{{old('longitude',$post->longitude)}}"
+            >
+            <input id="latitude"
+                   type="hidden"
+                   name="latitude"
+                   placeholder="latitude of map"
+                   class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none"
+                   value="{{old('latitude',$post->latitude)}}"
+            >
+
+            <x-googlemap.map/>
+            <x-buttons.default-button type="button" id="delete-markers"  class="mt-5 -mb-12">Delete Markers</x-buttons.default-button>
+
             <x-buttons.submit-button>Publish</x-buttons.submit-button>
         </form>
     </x-setting>

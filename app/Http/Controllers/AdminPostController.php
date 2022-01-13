@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class AdminPostController extends Controller
 {
     public  function index()
     {
+
         return view('admin.posts.index',[
-            'posts' => Post::paginate(50),
+            'posts' => Post::where('user_id',auth()->id())->paginate(10),
         ]);
     }
 
@@ -27,7 +29,13 @@ class AdminPostController extends Controller
         $attributes['user_id'] = auth()->id();
         $attributes['thumbnail'] = \request()->file('thumbnail')->store('thumbnails');
 
-//       ddd($attributes);
+        if(request('longitude') === null || request('latitude') === null)
+        {
+            return back()->with('error',['gmap' => 'Please choose a location of the signal']);
+        }
+        $attributes['longitude'] = \request('longitude');
+        $attributes['latitude']  = \request('latitude');
+
         Post::create($attributes);
         return redirect('/');
     }
@@ -46,6 +54,14 @@ class AdminPostController extends Controller
             $attributes['thumbnail'] = \request()->file('thumbnail')->store('thumbnails');
         }
 
+        if(request('longitude') === null || request('latitude') === null)
+        {
+            return back()->with('error',['gmap' => 'Please choose a location of the signal']);
+        }
+
+        $attributes['longitude'] = \request('longitude');
+        $attributes['latitude']  = \request('latitude');
+
         $post->update($attributes);
 
         return back()->with('success','Post Updated');
@@ -60,6 +76,8 @@ class AdminPostController extends Controller
     protected  function validatePost(?Post $post = null) : array
     {
         $post  = $post ?? null;
+//        Str::slug(\request('title')
+
        return request()->validate([
             'title' => 'required',
             'thumbnail' => $post->exists ? ['image'] : ['required','image'],

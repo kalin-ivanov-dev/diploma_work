@@ -1,5 +1,32 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
@@ -11,7 +38,6 @@ use App\Models\User;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
@@ -26,7 +52,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 Route::get('/welcome',function (){
-   return view('welcome') ;
+    return view('welcome') ;
 });
 
 Route::get('/', [PostController::class,'index'])->name('home');
@@ -72,3 +98,13 @@ Route::delete('admin/posts/{post}',[AdminPostController::class,'destroy'])->midd
 
 Auth::routes();
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+//Route::get('/', [RegisteredUserController::class, 'create']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

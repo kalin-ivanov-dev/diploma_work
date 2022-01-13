@@ -22,6 +22,8 @@ class CreatePostsTable extends Migration
             $table->string('thumbnail')->nullable();
             $table->text('excerpt');
             $table->text('body');
+            $table->decimal('longitude')->nullable();
+            $table->decimal('latitude')->nullable();
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
         });

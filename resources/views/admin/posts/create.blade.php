@@ -23,7 +23,29 @@
                 <x-form.error name="categry"/>
             </x-form.field>
 
-            <x-buttons.submit-button>Publish</x-buttons.submit-button>
+            <p class="block -mb-4 upercase font-bold text-xs text-gray-700" style="">Pick a location of the signal</p>
+            @if(session()->has('error.gmap'))
+                <div class="text-red-500 text-s mt-6">
+                    {{ session()->get('error.gmap') }}
+                </div>
+            @endif
+            {{--  GOOGLE MAPS COORDINATES FIELDS     --}}
+            <input id="longitude"
+                   type="hidden"
+                   name="longitude"
+                   placeholder="longitude of map"
+                   class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
+            <input id="latitude"
+                   type="hidden"
+                   name="latitude"
+                   placeholder="latitude of map"
+                   class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
+
+            <x-googlemap.map/>
+            <x-buttons.default-button type="button" id="delete-markers"  class="mt-5 -mb-12">Delete Markers</x-buttons.default-button>
+
+
+            <x-buttons.submit-button class="mt-5">Publish</x-buttons.submit-button>
         </form>
     </x-setting>
     </section>

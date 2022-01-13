@@ -4,9 +4,12 @@
 {{--<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<script defer src="https://unpkg.com/alpinejs@3.7.1/dist/cdn.min.js"></script>
 
+<script defer src="{{asset('js/app.js')}}"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+{{--<script defer src="https://unpkg.com/alpinejs@3.7.1/dist/cdn.min.js"></script>--}}
+<script defer src="{{asset('js/map.js')}}"></script>
 <style>
     html{
         scroll-behavior: smooth;
@@ -22,7 +25,6 @@
                 <img src="{{asset('storage/images/logo.svg')}}" alt="Laracasts Logo" width="165" height="16">
             </a>
         </div>
-
         <div class="mt-8 md:mt-0 flex items-center">
             @unless(auth()->check())
              <a href="/register" class="text-xs font-bold uppercase">Register</a>
@@ -30,7 +32,7 @@
             @else
                 <x-dropdown>
                     <x-slot name="trigger">
-                        <a class="text-xs font-bold uppercase">Welcome , {{ auth()->user()->name }}</a>
+                        <a class="text-xs font-bold uppercase">Welcome , {{ auth()->user()->username }}</a>
                     </x-slot>
 
 {{--                    @can('admin')--}}
@@ -105,3 +107,5 @@
 
 <x-flash />
 </body>
+
+
