@@ -8,21 +8,42 @@
 <script>
     let map;
     let markers = [];
+    let myLatLng;
     //array of markers
 
     let initialLat =  document.getElementById('latitude').value;
     let initLong =  document.getElementById('longitude').value;
+    let showMap = 'true'
+    if(document.getElementById('showMap'))
+    {
+        showMap =  document.getElementById('showMap').value;
+    }
+
 
     function initMap() {
 
-        //listen for click on map
-        const myLatLng = { lat: parseFloat(initialLat), lng: parseFloat(initLong) };
 
-        // const myLatLng = { lat: -25.363, lng: 131.044 };
-        map = new google.maps.Map(document.getElementById("map"), {
-            center: myLatLng,
-            zoom: 8,
-        });
+        //listen for click on map
+        if(initLong && initialLat)
+        {
+             myLatLng = { lat: parseFloat(initialLat), lng: parseFloat(initLong) };
+        } else
+        {
+             myLatLng = { lat: 42.737633, lng: 25.399320 };
+        }
+
+        if(showMap === 'false')
+        {
+            document.getElementById('map').remove();
+            return;
+        }else
+        {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: myLatLng,
+                zoom: 7,
+            });
+        }
+
 
         if(initLong && initialLat)
         {

@@ -12,14 +12,14 @@ class AdminPostController extends Controller
     public  function index()
     {
 
-        return view('admin.posts.index',[
+        return view('user.posts.index',[
             'posts' => Post::where('user_id',auth()->id())->paginate(10),
         ]);
     }
 
     public function create()
     {
-        return view('admin.posts.create');
+        return view('user.posts.create');
     }
 
     public function store()
@@ -42,7 +42,11 @@ class AdminPostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('admin.posts.edit',['post'=> $post]);
+        if($post->user_id != auth()->id())
+        {
+            return redirect('/user/posts')->with('error','This post is not associated to your profile');
+        }
+        return view('user.posts.edit',['post'=> $post]);
     }
 
     public function update(Post $post)

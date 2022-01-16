@@ -12,15 +12,15 @@
             </h4>
             <ul>
                 <li>
-                    <a href='/admin/posts'
-                       class="{{request()->is('admin/posts') ? 'text-blue-500' : ''}}"
+                    <a href='/user/posts'
+                       class="{{request()->is('user/posts') ? 'text-blue-500' : ''}}"
                     >
                         All Posts
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/posts/create"
-                       class="{{request()->is('admin/posts/create') ? 'text-blue-500' : ''}}"
+                    <a href="/user/posts/create"
+                       class="{{request()->is('user/posts/create') ? 'text-blue-500' : ''}}"
                     >
                         New Post
                     </a>

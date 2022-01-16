@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class MustBeAdministrator
@@ -18,6 +19,8 @@ class MustBeAdministrator
     public function handle(Request $request, Closure $next)
     {
 
+        if(!Auth::user()->is_admin)
+            return redirect('/')->with('error','Permission denied');
         return $next($request);
     }
 }

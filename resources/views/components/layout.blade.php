@@ -22,7 +22,7 @@
     <nav class="md:flex md:justify-between md:items-center">
         <div>
             <a href="/">
-                <img src="{{asset('storage/images/logo.svg')}}" alt="Laracasts Logo" width="165" height="16">
+                <img src="{{asset('storage/images/citizen-2.svg')}}" alt="Laracasts Logo" width="120" height="16">
             </a>
         </div>
         <div class="mt-8 md:mt-0 flex items-center">
@@ -35,9 +35,10 @@
                         <a class="text-xs font-bold uppercase">Welcome , {{ auth()->user()->username }}</a>
                     </x-slot>
 
-{{--                    @can('admin')--}}
-                        <x-dropdown-item href="/admin/posts/">All Posts</x-dropdown-item>
-                        <x-dropdown-item href="/admin/posts/create">
+{{--                    @can('user')--}}
+                         <x-dropdown-item href="/admin/dashboard/">Dashboard</x-dropdown-item>
+                        <x-dropdown-item href="/user/posts/">All Posts</x-dropdown-item>
+                        <x-dropdown-item href="/user/posts/create">
                             New Post
                         </x-dropdown-item>
 {{--                    @endcan--}}
@@ -105,7 +106,8 @@
     </footer>
 </section>
 
-<x-flash />
+<x-flashMessages.flash />
+<x-flashMessages.flash-error />
 </body>
 
 

@@ -46,6 +46,26 @@
                     <div class="space-y-4 lg:text-lg leading-loose">
                         {!!  $post->body !!}
                     </div>
+
+                    <input id="longitude"
+                           type="hidden"
+                           name="longitude"
+                           placeholder="longitude of map"
+                           class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none"
+                           value="{{old('longitude',$post->longitude)}}"
+                    >
+                    <input id="latitude"
+                           type="hidden"
+                           name="latitude"
+                           placeholder="latitude of map"
+                           class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none"
+                           value="{{old('latitude',$post->latitude)}}"
+                    >
+
+                    @if(!$post->latitude && !$post->longitude)
+                        <input id="showMap" type="hidden"  name="showMap" value="false">
+                    @endif
+                    <x-googlemap.map/>
                 </div>
 
                 <section class="col-span-8 col-start-5 mt-10 space-y-6">

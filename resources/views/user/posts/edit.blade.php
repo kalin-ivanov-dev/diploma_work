@@ -51,7 +51,7 @@
             >
 
             <x-googlemap.map/>
-            <x-buttons.default-button type="button" id="delete-markers"  class="mt-5 -mb-12">Delete Markers</x-buttons.default-button>
+            <x-buttons.default-button type="button" id="delete-markers"  class="mt-5 -mb-12 bg-red-500">Delete Markers</x-buttons.default-button>
 
             <x-buttons.submit-button>Publish</x-buttons.submit-button>
         </form>

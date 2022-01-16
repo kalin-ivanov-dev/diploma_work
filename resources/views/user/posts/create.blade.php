@@ -1,7 +1,7 @@
 <x-layout>
     <x-setting heading="Publish New Post">
 
-        <form method="POST" action="/admin/posts" enctype="multipart/form-data">
+        <form method="POST" action="/user/posts" enctype="multipart/form-data">
             @csrf
             <x-form.input name="title" />
             <x-form.input name="slug" />
@@ -42,7 +42,7 @@
                    class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
 
             <x-googlemap.map/>
-            <x-buttons.default-button type="button" id="delete-markers"  class="mt-5 -mb-12">Delete Markers</x-buttons.default-button>
+            <x-buttons.default-button type="button" id="delete-markers"  class="mt-5 -mb-12 bg-red-500">Delete Markers</x-buttons.default-button>
 
 
             <x-buttons.submit-button class="mt-5">Publish</x-buttons.submit-button>
