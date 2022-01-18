@@ -4,8 +4,10 @@
 {{--<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<link href="{{ asset('css/embla.css') }}" rel="stylesheet">
 
 <script defer src="{{asset('js/app.js')}}"></script>
+<script defer src="{{asset('js/embla_carousel.js')}}"></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 {{--<script defer src="https://unpkg.com/alpinejs@3.7.1/dist/cdn.min.js"></script>--}}
@@ -18,50 +20,52 @@
 
 
 <body style="font-family: Open Sans, sans-serif">
+ @include('layouts/font-navbar')
 <section class="px-6 py-8">
-    <nav class="md:flex md:justify-between md:items-center">
-        <div>
-            <a href="/">
-                <img src="{{asset('storage/images/citizen-2.svg')}}" alt="Laracasts Logo" width="120" height="16">
-            </a>
-        </div>
-        <div class="mt-8 md:mt-0 flex items-center">
-            @unless(auth()->check())
-             <a href="/register" class="text-xs font-bold uppercase">Register</a>
-             <a href="/login" class="ml-3 text-xs font-bold uppercase">Login</a>
-            @else
-                <x-dropdown>
-                    <x-slot name="trigger">
-                        <a class="text-xs font-bold uppercase">Welcome , {{ auth()->user()->username }}</a>
-                    </x-slot>
+{{--    <nav class="md:flex md:justify-between md:items-center">--}}
+{{--        <div>--}}
+{{--            <a href="/">--}}
+{{--                <img src="{{asset('storage/images/citizen-2.svg')}}" alt="Laracasts Logo" width="120" height="16">--}}
+{{--            </a>--}}
+{{--        </div>--}}
+{{--        <div class="mt-8 md:mt-0 flex items-center">--}}
+{{--            @unless(auth()->check())--}}
+{{--             <a href="/register" class="text-xs font-bold uppercase">Register</a>--}}
+{{--             <a href="/login" class="ml-3 text-xs font-bold uppercase">Login</a>--}}
+{{--            @else--}}
+{{--                <x-dropdown>--}}
+{{--                    <x-slot name="trigger">--}}
+{{--                        <a class="text-xs font-bold uppercase">Welcome , {{ auth()->user()->username }}</a>--}}
+{{--                    </x-slot>--}}
 
 {{--                    @can('user')--}}
-                         <x-dropdown-item href="/admin/dashboard/">Dashboard</x-dropdown-item>
-                        <x-dropdown-item href="/user/posts/">All Posts</x-dropdown-item>
-                        <x-dropdown-item href="/user/posts/create">
-                            New Post
-                        </x-dropdown-item>
+{{--                         <x-dropdown-item href="/admin/dashboard/">Dashboard</x-dropdown-item>--}}
+{{--                        <x-dropdown-item href="/user/posts/">All Posts</x-dropdown-item>--}}
+{{--                        <x-dropdown-item href="/user/posts/create">--}}
+{{--                            New Post--}}
+{{--                        </x-dropdown-item>--}}
 {{--                    @endcan--}}
 
-                    <x-dropdown-item href="#"
-                                     x-data="{}"
-                                     @click.prevent="document.querySelector('#logout-form').submit()"
-                    >
-                        Log out
-                    </x-dropdown-item>
-                    <form method="POST" id="logout-form" action="/logout" class="text-xs font-semibold text-blue-500 ml-6 hidden">
-                        @csrf
-                    </form>
-                </x-dropdown>
+{{--                    <x-dropdown-item href="#"--}}
+{{--                                     x-data="{}"--}}
+{{--                                     @click.prevent="document.querySelector('#logout-form').submit()"--}}
+{{--                    >--}}
+{{--                        Log out--}}
+{{--                    </x-dropdown-item>--}}
+{{--                    <form method="POST" id="logout-form" action="/logout" class="text-xs font-semibold text-blue-500 ml-6 hidden">--}}
+{{--                        @csrf--}}
+{{--                    </form>--}}
+{{--                </x-dropdown>--}}
 
 
-            @endunless
+{{--            @endunless--}}
 
-            <a href="#newsletter" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                Subscribe for Updates
-            </a>
-        </div>
-    </nav>
+{{--            <a href="#newsletter" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">--}}
+{{--                Subscribe for Updates--}}
+{{--            </a>--}}
+{{--        </div>--}}
+{{--    </nav>--}}
+
 
     {{$slot}}
 

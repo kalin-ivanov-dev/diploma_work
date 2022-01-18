@@ -17,7 +17,9 @@
         @if($user->is_admin)
             <p class="text-white whitespace-no-wrap bg-green-400 p-1 rounded-md text-center font-bold">Admin</p>
         @else
-            <p class="text-gray-900 whitespace-no-wrap ">User</p>
+            <a href="/admin/user/{{$user->id}}" class="text-yellow-400 hover:text-gray-100  mr-2  transition ease-in-out duration-300">
+                <p class="text-white whitespace-no-wrap bg-yellow-400 p-1 rounded-md text-center font-bold ">User</p>
+            </a>
         @endif
 
     </td>
@@ -36,19 +38,26 @@
                                         class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                         <span aria-hidden
                                               class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-									<span class="relative">Activo</span>
+									<span class="relative">Active</span>
 									</span>
     </td>
     <td>
-        <a href="/admin/user/{{$user->id}}/posts" class="text-yellow-400 hover:text-gray-100  mr-2">
+        <a href="/admin/user/{{$user->id}}/posts" class="text-yellow-400 hover:text-gray-100  mr-2  transition ease-in-out duration-300">
             <i class="material-icons-outlined text-base">visibility</i>
         </a>
-        <a href="#" class="text-blue-400 hover:text-gray-100 mx-2">
+        <a href="#" class="text-blue-400 hover:text-gray-100 mx-2 transition ease-in-out duration-300">
             <i class="material-icons-outlined text-base">edit</i>
         </a>
-        <a href="#" class="text-rose-400 hover:text-gray-100 ml-2">
-            <i class="material-icons-round text-base">delete_outline</i>
+        <a href="#" class="text-rose-400 hover:text-gray-100 ml-2  transition ease-in-out duration-300"
+           x-data="{}"
+           @click.prevent="document.querySelector('#adm_delete_usr').submit()"
+        >
+                <i class="material-icons-round text-base">delete_outline</i>
         </a>
     </td>
+    <form id="adm_delete_usr" method="POST" action="/admin/user/{{$user->id}}">
+        @csrf
+        @method('DELETE')
+    </form>
 
 </tr>

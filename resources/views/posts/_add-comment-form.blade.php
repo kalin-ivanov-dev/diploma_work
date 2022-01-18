@@ -9,9 +9,9 @@
             <div class="mt-6">
                                     <textarea
                                         name="body"
-                                        class="w-full text-sm focus:outline-none focus:ring"
+                                        class="border-gray-300 rounded-md w-full text-sm focus:outline-none focus:ring"
                                         rows="5"
-                                        placeholder="test test test"
+                                        placeholder="Type your text here"
                                         required
                                     ></textarea>
                 @error('body')

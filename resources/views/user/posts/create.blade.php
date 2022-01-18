@@ -5,12 +5,15 @@
             @csrf
             <x-form.input name="title" />
             <x-form.input name="slug" />
-            <x-form.input name="thumbnail" type="file" />
+{{--            <x-form.input name="image[]" type="file" multiple />--}}
+            <x-form.file_upload/>
+
+
             <x-form.textarea name="excerpt" />
             <x-form.textarea name="body" />
             <x-form.field>
                 <x-form.label name="category"/>
-                <select name="category_id" id="category_id ">
+                <select name="category_id" id="category_id" class="border-none rounded-md">
                     @foreach(\App\Models\Category::all() as $category)
                         <option
                             value="{{$category->id}}"
@@ -41,7 +44,7 @@
                    placeholder="latitude of map"
                    class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
 
-            <x-googlemap.map/>
+{{--            <x-googlemap.map/>--}}
             <x-buttons.default-button type="button" id="delete-markers"  class="mt-5 -mb-12 bg-red-500">Delete Markers</x-buttons.default-button>
 
 

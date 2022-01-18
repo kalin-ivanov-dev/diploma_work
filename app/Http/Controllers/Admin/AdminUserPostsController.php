@@ -15,4 +15,12 @@ class AdminUserPostsController extends Controller
             'user' => $user
         ]);
     }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return back()->with('success','User Deleted Successfully');
+    }
+
+
 }

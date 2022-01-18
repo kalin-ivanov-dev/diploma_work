@@ -1,4 +1,4 @@
-@if(session()->has('error'))
+@if(!is_array(session()->get('error')) &&  session()->has('error'))
     <div x-data="{show : true}"
          x-init="setTimeout(() => show = false,4000)"
          x-show="show"

@@ -18,3 +18,5 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
 ]);
 
 mix.js('resources/js/map.js', 'public/js')
+mix.js('resources/js/embla_carousel.js', 'public/js')
+mix.css('resources/css/embla.css', 'public/css')

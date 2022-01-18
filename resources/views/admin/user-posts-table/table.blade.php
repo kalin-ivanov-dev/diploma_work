@@ -18,10 +18,10 @@
                 </svg>
                 <input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" placeholder="search...">
             </div>
-            <div class="lg:ml-40 ml-10 space-x-8">
-                <button class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">New Report</button>
-                <button class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Create</button>
-            </div>
+{{--            <div class="lg:ml-40 ml-10 space-x-8">--}}
+{{--                <button class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">New Report</button>--}}
+{{--                <button class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Create</button>--}}
+{{--            </div>--}}
         </div>
     </div>
     <div class="flex flex-col">
@@ -73,14 +73,16 @@
                                 {{--                                    Admin--}}
                                 {{--                                </td>--}}
                                 <td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="/user/posts/{{ $post->id }}/edit" class="bg-blue-500 rounded-md  px-4 text-white p-2 hover:text-indigo-900 hover:bg-gray-200 ease-in-out duration-300">Edit</a>
+                                    <a href="/user/posts/{{ $post->id }}/edit" class="text-blue-400 hover:text-gray-100 mx-2 transition ease-in-out duration-300">
+                                        <i class="material-icons-outlined text-base">edit</i>
+                                    </a>
                                 </td>
-                                <td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium ">
                                     <form method="POST" action="/user/posts/{{$post->id}}">
                                         @csrf
                                         @method('DELETE')
-                                        <button  class="text-yellow-400 hover:text-gray-100  mr-2">
-                                            <i class="material-icons-outlined text-base">visibility</i>
+                                        <button  class="text-red-400 hover:text-gray-100  mr-2 transition ease-in-out duration-300">
+                                            <i class="material-icons-outlined text-base">delete_outline</i>
                                         </button>
                                     </form>
                                 </td>

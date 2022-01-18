@@ -19,7 +19,7 @@ class MustBeAdministrator
     public function handle(Request $request, Closure $next)
     {
 
-        if(!Auth::user()->is_admin)
+        if(!$request->user() || !Auth::user()->is_admin)
             return redirect('/')->with('error','Permission denied');
         return $next($request);
     }

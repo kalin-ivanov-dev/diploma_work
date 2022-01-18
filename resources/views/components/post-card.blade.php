@@ -4,10 +4,11 @@
     <div class="py-6 px-5">
         <div class="">
 
-            @if($post->thumbnail == null)
-                <img src="{{asset('storage/app/public/images/no-image.png')}}" alt="Blog Post illustration" class="rounded-xl h-60 w-full">
+            @if($post->images->count() == 0)
+                <img src="{{asset('storage/images/no-image.png')}}" alt="Blog Post illustration" class="rounded-xl h-60 w-full">
             @else
-                <img src="{{asset('storage/'.$post->thumbnail)}}" alt="Blog Post illustration" class="rounded-xl h-60 w-full">
+
+                <img src="{{asset('storage/'.$post->images->first()->image->path)}}" alt="Blog Post illustration" class="rounded-xl h-60 w-full">
             @endif
         </div>
 

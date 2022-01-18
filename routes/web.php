@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminUserPostsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -112,5 +113,6 @@ Route::get('admin/dashboard', function () {
     ]);
 })->middleware(['admin'])->name('dashboard');
 
-Route::get('admin/user/{user}/posts',[\App\Http\Controllers\Admin\AdminUserPostsController::class,'index'])->middleware(['admin']);
+Route::get('admin/user/{user}/posts',[AdminUserPostsController::class,'index'])->middleware(['admin']);
+Route::delete('admin/user/{user}',[AdminUserPostsController::class,'destroy'])->middleware('auth'); // Edit a post
 require __DIR__.'/auth.php';

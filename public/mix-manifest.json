@@ -1,5 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/map.js": "/js/map.js",
+    "/js/embla_carousel.js": "/js/embla_carousel.js",
+    "/css/embla.css": "/css/embla.css",
     "/css/app.css": "/css/app.css"
 }
