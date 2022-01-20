@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminUserCommentsController;
 use App\Http\Controllers\Admin\AdminUserPostsController;
 use Illuminate\Support\Facades\Route;
 
@@ -114,6 +115,10 @@ Route::get('admin/dashboard', function () {
 })->middleware(['admin'])->name('dashboard');
 
 Route::get('admin/user/{user}/posts',[AdminUserPostsController::class,'index'])->middleware(['admin']);
+
+Route::get('admin/user/{user}/comments',[AdminUserCommentsController::class,'index'])->middleware(['admin']);
+Route::delete('admin/user/{user}/comments/{comment}',[AdminUserCommentsController::class,'destroy'])->middleware(['admin']);
+
 Route::get('admin/user/{user}/edit',[AdminUserPostsController::class,'edit'])->middleware(['admin']);
 Route::patch('admin/user/{user}',[AdminUserPostsController::class,'update'])->middleware('auth');
 Route::delete('admin/user/{user}',[AdminUserPostsController::class,'destroy'])->middleware('auth');

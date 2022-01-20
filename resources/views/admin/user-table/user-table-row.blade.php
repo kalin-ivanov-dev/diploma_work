@@ -51,18 +51,24 @@
 									</span>
     </td>
     <td>
-        <a href="/admin/user/{{$user->id}}/posts" class="text-yellow-400 hover:text-gray-100  mr-2  transition ease-in-out duration-300">
-            <i class="material-icons-outlined text-base">visibility</i>
-        </a>
-        <a href="/admin/user/{{$user->id}}/edit" class="text-blue-400 hover:text-gray-100 mx-2 transition ease-in-out duration-300">
-            <i class="material-icons-outlined text-base">edit</i>
-        </a>
-        <a href="#" class="text-rose-400 hover:text-gray-100 ml-2  transition ease-in-out duration-300"
-           x-data="{}"
-           @click.prevent="document.querySelector('#adm_delete_usr').submit()"
-        >
+        <div class="grid grid-cols-2  auto-cols lg:grid-cols-4 w-48">
+            <a href="/admin/user/{{$user->id}}/posts" class="text-yellow-400 hover:text-gray-100  mx-2  transition ease-in-out duration-300  ">
+                <i class="material-icons-outlined text-base">visibility</i>
+            </a>
+            <a href="/admin/user/{{$user->id}}/edit" class="text-blue-400 hover:text-gray-100 mx-2 transition ease-in-out duration-300 ">
+                <i class="material-icons-outlined text-base">edit</i>
+            </a>
+            <a href="#" class="text-rose-400 hover:text-gray-100 mx-2  transition ease-in-out duration-300  "
+               x-data="{}"
+               @click.prevent="document.querySelector('#adm_delete_usr').submit()"
+            >
                 <i class="material-icons-round text-base">delete_outline</i>
-        </a>
+            </a>
+            <a href="/admin/user/{{$user->id}}/comments" class="text-gray-400 hover:text-gray-100 transition ease-in-out duration-300 mx-2">
+                <i class="material-icons-round text-base">message_outline</i>
+            </a>
+        </div>
+
     </td>
     <form id="adm_delete_usr" method="POST" action="/admin/user/{{$user->id}}">
         @csrf

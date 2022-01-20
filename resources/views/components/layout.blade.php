@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>Laravel From Scratch Blog</title>
+<title></title>
 {{--<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">

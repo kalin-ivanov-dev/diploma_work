@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function comments() // user_id {function name _ id} foreign key
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

@@ -31,7 +31,7 @@
             <main>
                 {{ $slot }}
             </main>
-
+                <x-flashMessages.flash />
 
         </div>
     </body>

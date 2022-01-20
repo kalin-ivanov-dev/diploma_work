@@ -41,10 +41,11 @@
                         {{$post->title}}
                     </h1>
 
-                    <div class="space-y-4 lg:text-lg leading-loose">
-                        @include('posts.image_carousel',$post)
-                    </div>
-
+                    @if($post->images->count() > 0)
+                        <div class="space-y-4 lg:text-lg leading-loose">
+                            @include('posts.image_carousel',$post)
+                        </div>
+                    @endif
                     <div class="space-y-4 mt-4 lg:text-lg leading-loose">
                         {!!  $post->body !!}
                     </div>

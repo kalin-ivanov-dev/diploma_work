@@ -1,9 +1,14 @@
 @auth
     <x-panel>
+
         <form method="POST" action="/posts/{{$post->slug}}/comments">
             @csrf
             <header class="flex items-center">
-                <img src="https://i.pravatar.cc/?u={{ auth()->id() }}" alt="" width="60" height="60" class="rounded-full">
+                @if(auth()->user()->profile_picture)
+                    <img src="{{asset('storage/'.auth()->user()->profile_picture)}}" alt="" width="60" height="60" class="rounded-full w-16 h-16">
+                @else
+                    <img src="https://i.pravatar.cc/?u={{ auth()->id() }}" alt="" width="60" height="60" class="rounded-full">
+                @endif
                 <h2 class="ml-4">Want to participate</h2>
             </header>
             <div class="mt-6">
