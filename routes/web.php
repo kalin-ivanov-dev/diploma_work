@@ -114,5 +114,7 @@ Route::get('admin/dashboard', function () {
 })->middleware(['admin'])->name('dashboard');
 
 Route::get('admin/user/{user}/posts',[AdminUserPostsController::class,'index'])->middleware(['admin']);
-Route::delete('admin/user/{user}',[AdminUserPostsController::class,'destroy'])->middleware('auth'); // Edit a post
+Route::get('admin/user/{user}/edit',[AdminUserPostsController::class,'edit'])->middleware(['admin']);
+Route::patch('admin/user/{user}',[AdminUserPostsController::class,'update'])->middleware('auth');
+Route::delete('admin/user/{user}',[AdminUserPostsController::class,'destroy'])->middleware('auth');
 require __DIR__.'/auth.php';
