@@ -1,7 +1,7 @@
 @props(['posts'])
 
 {{--<x-post-featured-card :post="$posts[0]"/>--}}
-@if($posts->count() > 1)
+@if($posts->count() > 0)
     <div class="lg:grid lg:grid-cols-12">
         @foreach($posts as $post)
             <x-post-card

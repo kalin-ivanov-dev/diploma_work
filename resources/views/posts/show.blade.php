@@ -8,7 +8,11 @@
                     </p>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
-                        <img src="{{asset('storage/images/lary-avatar.svg')}}" alt="Lary avatar">
+                        @if($user->profile_picture)
+                            <img src="{{asset('storage/'.$user->profile_picture)}}" alt="" width="60" height="60" class="rounded-full w-16 h-16">
+                        @else
+                            <img src="{{asset('storage/images/default_user_profile.png')}}" alt="" width="60" height="60" class="rounded-full">
+                        @endif
                         <div class="ml-3 text-left">
                             <h5><a  href="/?author={{$post->author->username}}" class="font-bold">{{$post->author->name}}</a></h5>
                         </div>

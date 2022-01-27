@@ -14,7 +14,7 @@
                         <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                             Attach files</p>
                     </div>
-                    <input type="file" name="post_images" id="post_images" class="opacity-0" multiple/>
+                    <input type="file" name="post_images[]" id="post_images" class="opacity-0" multiple/>
                 </label>
             </div>
         </div>

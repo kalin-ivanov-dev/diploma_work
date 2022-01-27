@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+
 class AdminUserPostsController extends Controller
 {
     public  function index(User $user)

@@ -4,13 +4,18 @@
         <form method="POST" action="/user/posts" enctype="multipart/form-data">
             @csrf
             <x-form.input name="title" />
-            <x-form.input name="slug" />
+{{--            <x-form.input name="slug" />--}}
 {{--            <x-form.input name="image[]" type="file" multiple />--}}
+            @if(session()->has('error.files'))
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    {{ session()->get('error.files') }}
+                </div>
+            @endif
             <x-form.file_upload/>
-
 
             <x-form.textarea name="excerpt" />
             <x-form.textarea name="body" />
+
             <x-form.field>
                 <x-form.label name="category"/>
                 <select name="category_id" id="category_id" class="border-none rounded-md">
@@ -28,7 +33,7 @@
 
             <p class="block -mb-4 upercase font-bold text-xs text-gray-700" style="">Pick a location of the signal</p>
             @if(session()->has('error.gmap'))
-                <div class="text-red-500 text-s mt-6">
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     {{ session()->get('error.gmap') }}
                 </div>
             @endif

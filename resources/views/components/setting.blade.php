@@ -25,6 +25,13 @@
                         New Post
                     </a>
                 </li>
+                <li>
+                    <a href="/user/comments"
+                       class="{{request()->is('user/posts/create') ? 'text-blue-500' : ''}}"
+                    >
+                        Comments
+                    </a>
+                </li>
             </ul>
         </aside>
         <main class="flex-1">

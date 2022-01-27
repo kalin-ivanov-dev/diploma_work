@@ -39,7 +39,13 @@
 
             <footer class="flex justify-between items-center mt-8 flex-col">
                 <div class="flex items-center text-sm">
-                    <img src="{{asset('storage/images/lary-avatar.svg')}}" alt="Lary avatar" class="inline-block h-16 w-16 rounded-full ring-2 ring-white">
+                    @if($post->author()->get()->first()->profile_picture)
+                        <img class="h-10 w-10 rounded-full object-cover" src="{{asset('storage/'.$post->author()->get()->first()->profile_picture)}}" alt="">
+                    @else
+                        <img class="h-10 w-10 rounded-full object-cover" src="{{asset('storage/images/default_user_profile.png')}}" alt="">
+                    @endif
+
+{{--                    <img src="{{asset('storage/images/lary-avatar.svg')}}" alt="Lary avatar" class="inline-block h-16 w-16 rounded-full ring-2 ring-white">--}}
                     <div class="ml-3">
                         <h5><a  href="/?author={{$post->author->username}}" class="font-bold">{{$post->author->name}}</a></h5>
                         <h6>Mascot at Laracasts</h6>

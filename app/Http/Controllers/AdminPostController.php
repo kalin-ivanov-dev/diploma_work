@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Post;
 use App\Models\PostImage;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -15,6 +17,15 @@ class AdminPostController extends Controller
     {
         return view('user.posts.index',[
             'posts' => Post::where('user_id',auth()->id())->paginate(10),
+            'user' => User::where('id',auth()->id())->get()->first(),
+        ]);
+    }
+
+    public  function comments()
+    {
+        return view('user.posts.comments',[
+            'comments' => Comment::where('user_id',auth()->id())->paginate(10),
+            'user' => User::where('id',auth()->id())->get()->first(),
         ]);
     }
 
@@ -25,12 +36,15 @@ class AdminPostController extends Controller
 
     public function store()
     {
-        dd(\request());
         $attributes = $this->validatePost(new Post);
-
         $attributes['user_id'] = auth()->id();
 
-        $image_ids = $this->uploadFiles(\request());
+        if(!request()->hasFile('post_images'))
+            return back()->with('error',['files' => 'Please upload at least one file for the signal']);
+        else
+        {
+            $image_ids = $this->uploadFiles(\request());
+        }
 
 //        if(request('longitude') === null || request('latitude') === null)
 //        {
@@ -39,7 +53,9 @@ class AdminPostController extends Controller
         $attributes['longitude'] = \request('longitude');
         $attributes['latitude'] = \request('latitude');
 
+        $attributes['slug'] = '54323';
         $post = Post::create($attributes);
+
 
         if (isset($image_ids) && !empty($image_ids))
         {
@@ -52,7 +68,7 @@ class AdminPostController extends Controller
            }
         }
 
-        return redirect('/');
+        return redirect('/user/posts')->with('success','Signal Successfully Created');
     }
 
 
@@ -60,18 +76,9 @@ class AdminPostController extends Controller
     {
         $image_ids = [];
 
-
         if($request->hasFile('post_images'))
         {
             foreach ($request->file('post_images') as $file) {
-//                $image_name = md5(rand(1000,1000));
-//                $ext = strtolower($file->getClientOriginalExtension());
-//                $img_full_name = $image_name.'.'.$ext;
-//                $upload_path = public_path().'/uploads/';
-//
-//                $img_url  = $upload_path.$img_full_name;
-//                $file->move($upload_path,$img_full_name);
-//                $imgData[] = $img_url;
 
                 $img_path = $file->store('uploads');
                 $image = new Image();
@@ -104,35 +111,33 @@ class AdminPostController extends Controller
             $attributes['thumbnail'] = \request()->file('thumbnail')->store('thumbnails');
         }
 
-        if(request('longitude') === null || request('latitude') === null)
-        {
-            return back()->with('error',['gmap' => 'Please choose a location of the signal']);
-        }
+//        if(request('longitude') === null || request('latitude') === null)
+//        {
+//            return back()->with('error',['gmap' => 'Please choose a location of the signal']);
+//        }
 
         $attributes['longitude'] = \request('longitude');
         $attributes['latitude']  = \request('latitude');
 
         $post->update($attributes);
 
-        return back()->with('success','Post Updated');
+        return redirect('/user/posts')->with('success','Signal Updated Successfully');
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
-        return back()->with('success','Post Deleted');
+        return back()->with('success','Signal Deleted');
     }
 
     protected  function validatePost(?Post $post = null) : array
     {
         $post  = $post ?? null;
 //        Str::slug(\request('title')
-
+        \request()->slug = Str::slug(request()->title);
        return request()->validate([
             'title' => 'required',
-//            'thumbnail' => $post->exists ? ['image'] : ['required','image'],
-            'slug' => ['required',Rule::unique('posts','slug')->ignore($post)],
-            'excerpt'  => 'required',
+            'excerpt'  => 'required|max:255',
             'body'  => 'required',
             'category_id' => ['required',Rule::exists('categories','id')]
         ]);

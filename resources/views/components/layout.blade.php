@@ -11,7 +11,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 {{--<script defer src="https://unpkg.com/alpinejs@3.7.1/dist/cdn.min.js"></script>--}}
-<script defer src="{{asset('js/map.js')}}"></script>
+{{--<script defer src="{{asset('js/map.js')}}"></script>--}}
 <style>
     html{
         scroll-behavior: smooth;
@@ -20,7 +20,7 @@
 
 
 <body style="font-family: Open Sans, sans-serif">
- @include('layouts/font-navbar')
+ @include('layouts/front-navbar')
 <section class="px-6 py-8">
 {{--    <nav class="md:flex md:justify-between md:items-center">--}}
 {{--        <div>--}}
@@ -70,9 +70,9 @@
     {{$slot}}
 
 
-    <footer id="newsletter" class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
-        <img src="{{asset('storage/images/lary-newsletter-icon.svg')}}" alt="" class="mx-auto -mb-6" style="width: 145px;">
-        <h5 class="text-3xl">Stay in touch with the latest posts</h5>
+    <footer id="newsletter" class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16 mb-4">
+        <img src="{{asset('storage/images/city.svg')}}" alt="" class="mx-auto -mb-6" style="width: 145px;">
+        <h5 class="text-3xl mt-7">Stay in touch with the latest posts</h5>
         <p class="text-sm mt-3">Promise to keep the inbox clean. No bugs.</p>
 
         <div class="mt-10">
@@ -90,7 +90,7 @@
                                   type="email"
                                   name="email"
                                   placeholder="Your email address"
-                                  class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none"
+                                  class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none border-none rounded-full"
                            >
 
                            @error('email')

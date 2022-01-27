@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminUserCommentsController;
 use App\Http\Controllers\Admin\AdminUserPostsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,10 +73,12 @@ Route::post('newsletter',NewsletterController::class);
 Route::get('user/posts/create',[AdminPostController::class,'create'])->middleware('auth'); //Get create page for posts
 Route::post('user/posts',[AdminPostController::class,'store'])->middleware('auth'); // Create  a post
 Route::get('user/posts/',[AdminPostController::class,'index'])->middleware('auth'); // Show all posts
+Route::get('user/comments/',[AdminPostController::class,'comments'])->middleware('auth'); // Show all posts
 Route::get('user/posts/{post}/edit',[AdminPostController::class,'edit'])->middleware('auth'); // Edit a post
 Route::patch('user/posts/{post}',[AdminPostController::class,'update'])->middleware('auth'); // Edit a post
 Route::delete('user/posts/{post}',[AdminPostController::class,'destroy'])->middleware('auth'); // Edit a post
 
+Route::get('user/profile/',[UserController::class,'index'])->middleware('auth'); // Show all posts
 
 
 
@@ -106,6 +109,14 @@ Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->nam
 //Route::get('/', [RegisteredUserController::class, 'create']);
 
 Route::get('admin/dashboard', function () {
+
+    if(request()->has('query'))
+    {
+        $query = request()->all()['query'];
+        $filterResult = User::where('username', 'LIKE', '%'. $query. '%')->get('username');
+
+        return response()->json($filterResult);
+    }
 
     $users = User::all();
 

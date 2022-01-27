@@ -9,7 +9,7 @@
                 @else
                     <img src="https://i.pravatar.cc/?u={{ auth()->id() }}" alt="" width="60" height="60" class="rounded-full">
                 @endif
-                <h2 class="ml-4">Want to participate</h2>
+                <h2 class="ml-4">Want to participate? Leave a comment.</h2>
             </header>
             <div class="mt-6">
                                     <textarea
