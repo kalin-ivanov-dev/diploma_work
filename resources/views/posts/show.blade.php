@@ -21,7 +21,7 @@
 
                 <div class="col-span-8">
                     <div class="hidden lg:flex justify-between mb-6">
-                        <a href="/"
+                        <a href="/posts"
                            class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
                             <svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
                                 <g fill="none" fill-rule="evenodd">
@@ -39,6 +39,13 @@
                         <div class="space-x-2">
                             <x-category-button :category="$post->category"/>
                         </div>
+
+                        @if(auth()->check() && $post->user_id == $user->id)
+                            <div class="space-x-2">
+                                <a href="/user/posts/{{$post->id}}/edit" class="bg-blue-500 px-4 py-1 rounded-full text-white shadow-lg hover:bg-gray-300 ease-in-out duration-300">Edit</a>
+                            </div>
+                        @endif
+
                     </div>
 
                     <h1 class="font-bold text-3xl lg:text-4xl mb-10">

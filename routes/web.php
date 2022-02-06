@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminUserCommentsController;
 use App\Http\Controllers\Admin\AdminUserPostsController;
+use App\Http\Controllers\ChangeUsrPassword;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,7 +60,10 @@ Route::get('/welcome',function (){
     return view('welcome') ;
 });
 
-Route::get('/', [PostController::class,'index'])->name('home');
+Route::get('/posts', [PostController::class,'index'])->name('posts');
+Route::get('/',function (){
+    return view('layouts.landing');
+})->name('home');
 
 Route::get('posts/{post:slug}', [PostController::class,'show']);
 //Route::get('register', [RegisterController::class,'create'])->middleware('guest');
@@ -79,7 +84,9 @@ Route::patch('user/posts/{post}',[AdminPostController::class,'update'])->middlew
 Route::delete('user/posts/{post}',[AdminPostController::class,'destroy'])->middleware('auth'); // Edit a post
 
 Route::get('user/profile/',[UserController::class,'index'])->middleware('auth'); // Show all posts
-
+Route::get('user/profile/{user}/edit',[UserController::class,'edit'])->middleware('auth');
+Route::get('user/{user}/change-password', [ChangeUsrPassword::class,'index'])->middleware('auth');
+Route::post('user/{user}/change-password', [ChangeUsrPassword::class,'store'])->name('change.password')->middleware('auth');
 
 
 

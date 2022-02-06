@@ -14,4 +14,12 @@ class UserController extends Controller
             'user' => User::where('id',auth()->id())->get()->first(),
         ]);
     }
+
+    public function  edit(User $user)
+    {
+        return view('user.edit-profile',[
+            'user' => User::where('id',auth()->id())->get()->first(),
+        ]);
+    }
+
 }

@@ -7,7 +7,7 @@
             @method('PATCH')
 
             <x-form.input name="title" :value="$post->title" />
-            <x-form.input name="slug" :value="old('slug',$post->slug)"/>
+{{--            <x-form.input name="slug" :value="old('slug',$post->slug)"/>--}}
 
             <div class="flex flex-row flex-wrap bg-white  bg-opacity-60 backdrop-filter backdrop-blur-lg p-5 rounded-md shadow-lg">
                 <p class="px-2 mb-5  basis-full">Uploaded Images</p>
@@ -76,5 +76,5 @@
             <x-buttons.submit-button>Publish</x-buttons.submit-button>
         </form>
     </x-setting>
-    </section>
 </x-layout>
+

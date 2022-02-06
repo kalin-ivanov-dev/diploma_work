@@ -33,7 +33,7 @@
 
         <!-- Search -->
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 ">
-            <form method="GET" action="/" >
+            <form method="GET" action="/posts/" >
                 @if(request('category'))
                     <input type="hidden"  name="category" value="{{request('category')}}">
                 @endif

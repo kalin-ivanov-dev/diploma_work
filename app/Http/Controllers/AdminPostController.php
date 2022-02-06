@@ -36,6 +36,7 @@ class AdminPostController extends Controller
 
     public function store()
     {
+
         $attributes = $this->validatePost(new Post);
         $attributes['user_id'] = auth()->id();
 
@@ -53,7 +54,8 @@ class AdminPostController extends Controller
         $attributes['longitude'] = \request('longitude');
         $attributes['latitude'] = \request('latitude');
 
-        $attributes['slug'] = '54323';
+        $attributes['slug'] = $this->generateSlug(\request()->title);
+
         $post = Post::create($attributes);
 
 
@@ -134,13 +136,29 @@ class AdminPostController extends Controller
     {
         $post  = $post ?? null;
 //        Str::slug(\request('title')
-        \request()->slug = Str::slug(request()->title);
+        ;
        return request()->validate([
             'title' => 'required',
             'excerpt'  => 'required|max:255',
             'body'  => 'required',
             'category_id' => ['required',Rule::exists('categories','id')]
         ]);
+    }
+
+    private function generateSlug($name)
+    {
+        $random_string =  Str::limit(md5(Str::random(10)).Str::random(30),15,'');
+        $slug = Str::slug($name,'_')."_{$random_string}";
+//        $test = 'repellendus-veniam-porro-fugiat-et';
+        $check_signal_slug = Post::where('slug','like','%' . $slug.'%')->get()->first();
+
+        if($check_signal_slug === null)
+           return  $slug;
+        else
+        {
+          return $this->generateSlug($name);
+        }
+
     }
 
 
