@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
-class AdminPostController extends Controller
+class UserPostController extends Controller
 {
     public  function index()
     {

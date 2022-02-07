@@ -15,6 +15,7 @@ class PostCommentsController extends Controller
 
         $post->comments()->create([
             'user_id' => $request->user()->id,
+            'is_active' => 0,
             'body' => $request['body'],
         ]);
 

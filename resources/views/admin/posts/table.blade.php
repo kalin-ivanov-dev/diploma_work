@@ -5,8 +5,8 @@
 <div class="bg-white p-8 rounded-md w-full">
     <div class=" flex items-center justify-between pb-6">
         <div>
-            <h2 class="text-gray-600 font-semibold">Registered users</h2>
-            <span class="text-xs">All users </span>
+            <h2 class="text-gray-600 font-semibold">Registered signals</h2>
+            <span class="text-xs">All signals</span>
         </div>
         <div class="flex items-center justify-between">
             <div class="flex bg-gray-50 items-center p-2 rounded-md">
@@ -19,10 +19,10 @@
                 <input class="bg-gray-50 outline-none ml-1 block border-none focus:ring-opacity-50 focus:rounded" type="text" name="searchUser" id="searchUser" placeholder="search...">
 
             </div>
-{{--            <div class="lg:ml-40 ml-10 space-x-8">--}}
-{{--                <button class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">New Report</button>--}}
-{{--                <button class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Create</button>--}}
-{{--            </div>--}}
+            {{--            <div class="lg:ml-40 ml-10 space-x-8">--}}
+            {{--                <button class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">New Report</button>--}}
+            {{--                <button class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Create</button>--}}
+            {{--            </div>--}}
         </div>
     </div>
     <div>
@@ -33,11 +33,11 @@
                     <tr>
                         <th
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            Username
+                            User
                         </th>
                         <th
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            Role
+                            Title
                         </th>
                         <th
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -45,7 +45,7 @@
                         </th>
                         <th
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            Posts
+                            Comments
                         </th>
                         <th
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -59,30 +59,29 @@
                     </thead>
                     <tbody>
 
-
-                    @foreach($users as $user)
-                        @include('admin.user-table.user-table-row',$user)
+                    @foreach($posts as $post)
+                        @include('admin.posts.table-row',$posts)
                     @endforeach
 
                     </tbody>
                 </table>
-{{--                <div--}}
-{{--                    class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">--}}
-{{--						<span class="text-xs xs:text-sm text-gray-900">--}}
-{{--                            Showing 1 to 4 of 50 Entries--}}
-{{--                        </span>--}}
-{{--                    <div class="inline-flex mt-2 xs:mt-0">--}}
-{{--                        <button--}}
-{{--                            class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-l">--}}
-{{--                            Prev--}}
-{{--                        </button>--}}
-{{--                        &nbsp; &nbsp;--}}
-{{--                        <button--}}
-{{--                            class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-r">--}}
-{{--                            Next--}}
-{{--                        </button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                <div--}}
+                {{--                    class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">--}}
+                {{--						<span class="text-xs xs:text-sm text-gray-900">--}}
+                {{--                            Showing 1 to 4 of 50 Entries--}}
+                {{--                        </span>--}}
+                {{--                    <div class="inline-flex mt-2 xs:mt-0">--}}
+                {{--                        <button--}}
+                {{--                            class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-l">--}}
+                {{--                            Prev--}}
+                {{--                        </button>--}}
+                {{--                        &nbsp; &nbsp;--}}
+                {{--                        <button--}}
+                {{--                            class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-r">--}}
+                {{--                            Next--}}
+                {{--                        </button>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
             </div>
         </div>
     </div>

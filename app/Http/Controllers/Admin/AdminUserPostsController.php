@@ -11,7 +11,7 @@ class AdminUserPostsController extends Controller
 {
     public  function index(User $user)
     {
-        return view('admin.user-posts',[
+        return view('admin.user.user-posts',[
             'posts' => $user->posts()->get(),
             'user' => $user
         ]);
@@ -25,7 +25,7 @@ class AdminUserPostsController extends Controller
 
     public function edit(User $user)
     {
-        return  view('admin.edit-user',[
+        return  view('admin.user.edit-user',[
             'user' => $user
         ]);
     }

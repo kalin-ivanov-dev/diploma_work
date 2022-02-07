@@ -12,6 +12,7 @@ class Comment extends Model
     use HasFactory;
 
     protected $guarded = [];
+//    protected $fillable  = ['user_id','is_active'];
 //    protected  $with = ['author','post'];
     public  function post()
     {

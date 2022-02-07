@@ -1,6 +1,6 @@
 @props(['heading'])
 
-<section class="py-8 max-w-4xl mx-auto  shadow-2xl p-5 rounded-xl">
+<section class="py-8 max-w-4xl mx-auto  shadow-2xl p-5 rounded-xl mt-20">
     <h1 class="text-lg font-bold mb-8 pb-2 border-b">
         {{$heading}}
     </h1>
@@ -27,7 +27,7 @@
                 </li>
                 <li>
                     <a href="/user/comments"
-                       class="{{request()->is('user/posts/create') ? 'text-blue-500' : ''}}"
+                       class="{{request()->is('user/comments') ? 'text-blue-500' : ''}}"
                     >
                         Comments
                     </a>

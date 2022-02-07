@@ -11,7 +11,7 @@ class  AdminUserCommentsController extends Controller
 {
     public  function index(User $user)
     {
-        return view('admin.user-comments',[
+        return view('admin.user.user-comments',[
             'posts' => $user->posts()->get(),
             'user' => $user,
         ]);

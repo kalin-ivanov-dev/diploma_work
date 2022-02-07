@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\Admin\Post\AdminPostController;
 use App\Http\Controllers\Admin\AdminUserCommentsController;
 use App\Http\Controllers\Admin\AdminUserPostsController;
 use App\Http\Controllers\ChangeUsrPassword;
@@ -7,32 +9,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\RegisterController;
@@ -75,13 +53,13 @@ Route::post('posts/{post:slug}/comments',[PostCommentsController::class,'store']
 Route::post('newsletter',NewsletterController::class);
 
 //Admin Post Routes
-Route::get('user/posts/create',[AdminPostController::class,'create'])->middleware('auth'); //Get create page for posts
-Route::post('user/posts',[AdminPostController::class,'store'])->middleware('auth'); // Create  a post
-Route::get('user/posts/',[AdminPostController::class,'index'])->middleware('auth'); // Show all posts
-Route::get('user/comments/',[AdminPostController::class,'comments'])->middleware('auth'); // Show all posts
-Route::get('user/posts/{post}/edit',[AdminPostController::class,'edit'])->middleware('auth'); // Edit a post
-Route::patch('user/posts/{post}',[AdminPostController::class,'update'])->middleware('auth'); // Edit a post
-Route::delete('user/posts/{post}',[AdminPostController::class,'destroy'])->middleware('auth'); // Edit a post
+Route::get('user/posts/create',[UserPostController::class,'create'])->middleware('auth'); //Get create page for posts
+Route::post('user/posts',[UserPostController::class,'store'])->middleware('auth'); // Create  a post
+Route::get('user/posts/',[UserPostController::class,'index'])->middleware('auth'); // Show all posts
+Route::get('user/comments/',[UserPostController::class,'comments'])->middleware('auth'); // Show all posts
+Route::get('user/posts/{post}/edit',[UserPostController::class,'edit'])->middleware('auth'); // Edit a post
+Route::patch('user/posts/{post}',[UserPostController::class,'update'])->middleware('auth'); // Edit a post
+Route::delete('user/posts/{post}',[UserPostController::class,'destroy'])->middleware('auth'); // Edit a post
 
 Route::get('user/profile/',[UserController::class,'index'])->middleware('auth'); // Show all posts
 Route::get('user/profile/{user}/edit',[UserController::class,'edit'])->middleware('auth');
@@ -132,12 +110,24 @@ Route::get('admin/dashboard', function () {
     ]);
 })->middleware(['admin'])->name('dashboard');
 
+//User posts
 Route::get('admin/user/{user}/posts',[AdminUserPostsController::class,'index'])->middleware(['admin']);
 
+// User comments
 Route::get('admin/user/{user}/comments',[AdminUserCommentsController::class,'index'])->middleware(['admin']);
 Route::delete('admin/user/{user}/comments/{comment}',[AdminUserCommentsController::class,'destroy'])->middleware(['admin']);
 
+// Admin Users
 Route::get('admin/user/{user}/edit',[AdminUserPostsController::class,'edit'])->middleware(['admin']);
 Route::patch('admin/user/{user}',[AdminUserPostsController::class,'update'])->middleware('auth');
 Route::delete('admin/user/{user}',[AdminUserPostsController::class,'destroy'])->middleware('auth');
+
+// Admin Posts
+Route::get('admin/posts',[AdminPostController::class,'index'])->middleware(['admin'])->name('admin_posts');
+Route::get('admin/posts/{post}/edit',[AdminPostController::class,'edit'])->middleware(['admin']);
+Route::patch('admin/posts/{post}',[AdminPostController::class,'update'])->middleware('auth');
+Route::delete('admin/posts/{post}',[AdminPostController::class,'destroy'])->middleware('auth');
+
+// Admin post comments
+Route::get('admin/posts/{post}/comments',[AdminPostController::class,'comments'])->middleware(['admin']);
 require __DIR__.'/auth.php';
