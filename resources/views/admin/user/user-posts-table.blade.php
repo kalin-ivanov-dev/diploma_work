@@ -16,7 +16,8 @@
                           d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                           clip-rule="evenodd" />
                 </svg>
-                <input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" placeholder="search...">
+                <input class="bg-gray-50 outline-none ml-1 block border-none focus:ring-opacity-50 focus:rounded" type="text" name="searchUser" id="searchUser" placeholder="search...">
+
             </div>
 {{--            <div class="lg:ml-40 ml-10 space-x-8">--}}
 {{--                <button class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">New Report</button>--}}
@@ -44,8 +45,19 @@
                             <tr >
                                 <td class="px-6 py-4 mt-5 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10">
-                                            <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
+                                        <div class="flex-shrink-0 w-10 h-10">
+
+                                            @if($user->profile_picture)
+                                                <img class="w-full h-full rounded-full object-cover"
+                                                     src="{{asset('storage/'.$user->profile_picture)}}"
+                                                     alt="" />
+
+                                            @else
+                                                <img class="w-full h-full rounded-full object-cover"
+                                                     src="{{asset('storage/images/default_user_profile.png')}}"
+                                                     alt="" />
+                                            @endif
+
                                         </div>
                                         <div class="ml-4">
                                             <div class="text-sm font-medium text-gray-900">
@@ -73,12 +85,12 @@
                                 {{--                                    Admin--}}
                                 {{--                                </td>--}}
                                 <td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="/user/posts/{{ $post->id }}/edit" class="text-blue-400 hover:text-gray-100 mx-2 transition ease-in-out duration-300">
+                                    <a href="/admin/posts/{{ $post->id }}/edit" class="text-blue-400 hover:text-gray-100 mx-2 transition ease-in-out duration-300">
                                         <i class="material-icons-outlined text-base">edit</i>
                                     </a>
                                 </td>
                                 <td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium ">
-                                    <form method="POST" action="/user/posts/{{$post->id}}">
+                                    <form method="POST" action="/admin/posts/{{$post->id}}">
                                         @csrf
                                         @method('DELETE')
                                         <button  class="text-red-400 hover:text-gray-100  mr-2 transition ease-in-out duration-300">

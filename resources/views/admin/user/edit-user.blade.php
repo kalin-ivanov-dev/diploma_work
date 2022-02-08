@@ -6,6 +6,7 @@
     </x-slot>
     <div class="py-12">
         <div class="w-full md:w-6/12 mx-auto sm:px-6 lg:px-8 ">
+            <x-back-button  href="/admin/dashboard" />
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
                 {{--                <div class="p-6 bg-white border-b border-gray-200">--}}
                 {{--                    You're logged in!--}}
@@ -29,8 +30,8 @@
                         <x-form.input name="username" :value="$user->username"/>
                         <x-form.input name="email" :value="$user->email" />
                         <div class="form-check p-2">
-                            <input name="is_admin" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="1" id="flexCheckChecked" checked>
-                            <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
+                            <input name="is_admin" id="is_admin" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="1"  checked>
+                            <label class="form-check-label inline-block text-gray-800" for="is_admin">
                                 Is user admin
                             </label>
                         </div>
@@ -74,7 +75,7 @@
 
 
 <script>
-    const cb = document.getElementById('flexCheckChecked');
+    const cb = document.getElementById('is_admin');
 
     cb.onclick = () => {
         console.log(cb.checked);

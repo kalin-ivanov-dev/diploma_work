@@ -43,6 +43,11 @@
         </p>
     </td>
     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p class="text-gray-900 whitespace-no-wrap">
+            {{ $user->comments()->count() }}
+        </p>
+    </td>
+    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<span
                                         class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                         <span aria-hidden
@@ -64,9 +69,12 @@
             >
                 <i class="material-icons-round text-base">delete_outline</i>
             </a>
-            <a href="/admin/user/{{$user->id}}/comments" class="text-gray-400 hover:text-gray-100 transition ease-in-out duration-300 mx-2">
-                <i class="material-icons-round text-base">message_outline</i>
-            </a>
+            @if($user->comments()->get()->count() > 0)
+                <a href="/admin/user/{{$user->id}}/comments" class="text-gray-400 hover:text-gray-100 transition ease-in-out duration-300 mx-2">
+                    <i class="material-icons-round text-base">message_outline</i>
+                </a>
+            @endif
+
         </div>
 
     </td>

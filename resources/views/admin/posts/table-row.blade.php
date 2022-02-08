@@ -55,9 +55,11 @@
             >
                 <i class="material-icons-round text-base">delete_outline</i>
             </a>
-            <a href="/admin/posts/{{$post->id}}/comments" class="text-gray-400 hover:text-gray-100 transition ease-in-out duration-300 mx-2">
-                <i class="material-icons-round text-base">message_outline</i>
-            </a>
+            @if( $post->comments()->count() > 0)
+                <a href="/admin/posts/{{$post->id}}/comments" class="text-gray-400 hover:text-gray-100 transition ease-in-out duration-300 mx-2">
+                    <i class="material-icons-round text-base">message_outline</i>
+                </a>
+            @endif
         </div>
 
     </td>

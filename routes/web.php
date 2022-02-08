@@ -1,11 +1,13 @@
 <?php
 
 
+use App\Http\Controllers\Admin\AdminCommentsController;
 use App\Http\Controllers\Admin\Post\AdminPostController;
 use App\Http\Controllers\Admin\AdminUserCommentsController;
 use App\Http\Controllers\Admin\AdminUserPostsController;
 use App\Http\Controllers\ChangeUsrPassword;
 use App\Http\Controllers\UserController;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
@@ -94,7 +96,6 @@ Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->nam
 //Route::get('/', [RegisteredUserController::class, 'create']);
 
 Route::get('admin/dashboard', function () {
-
     if(request()->has('query'))
     {
         $query = request()->all()['query'];
@@ -109,6 +110,25 @@ Route::get('admin/dashboard', function () {
         'users' => $users,
     ]);
 })->middleware(['admin'])->name('dashboard');
+
+Route::post('admin/dashboard', function () {
+
+    if(request()->has('id_comment') && request()->has('is_approved'))
+    {
+        $comment = Comment::where('id',request()->all()['id_comment'])->first();
+        if(!is_null($comment))
+        {
+            $comment->is_active = request()->all()['is_approved'];
+            $comment->update();
+            return response()->json(['status' => $comment->is_active]);
+            dump($comment);
+        }
+
+    }
+    dump(request()->has('id_comment'));
+    dd(request()->all());
+})->middleware(['admin'])->name('dashboard');
+
 
 //User posts
 Route::get('admin/user/{user}/posts',[AdminUserPostsController::class,'index'])->middleware(['admin']);
@@ -130,4 +150,10 @@ Route::delete('admin/posts/{post}',[AdminPostController::class,'destroy'])->midd
 
 // Admin post comments
 Route::get('admin/posts/{post}/comments',[AdminPostController::class,'comments'])->middleware(['admin']);
+
+// Admin comments
+Route::get('admin/comments/',[AdminCommentsController::class,'index'])->middleware('auth');
+Route::get('admin/comments/{comment}/edit',[AdminCommentsController::class,'edit'])->middleware('auth');
+Route::patch('admin/comments/{comment}',[AdminCommentsController::class,'update'])->middleware('auth');
+
 require __DIR__.'/auth.php';
